@@ -1,4 +1,5 @@
 # import os
+from datetime import timedelta
 from pathlib import Path
 
 from django.urls import reverse_lazy
@@ -22,6 +23,7 @@ INSTALLED_APPS = [
     'my_holiday.web',
     'my_holiday.destination',
     'my_holiday.comment',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -121,6 +123,12 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.TokenAuthentication',
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
-    'DEFAULT_PERMISSION_CLASSES': ("rest_framework.permissions.IsAuthenticated",),
+    'DEFAULT_PERMISSION_CLASSES': ("rest_framework.permissions.AllowAny",),
 }
 
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(hours=2),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+    'SIGNING_KEY': SECRET_KEY,
+    'AUTH_HEADER_TYPES': ('Bearer',),
+}

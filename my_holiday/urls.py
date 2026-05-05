@@ -2,6 +2,12 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path
+from rest_framework.routers import DefaultRouter
+
+from my_holiday.destination.api.views import DestinationViewSet
+
+router = DefaultRouter()
+router.register("destination", DestinationViewSet, basename="trucks")
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -10,6 +16,7 @@ urlpatterns = [
     path('destination/', include('my_holiday.destination.urls')),
     path('comment/', include('my_holiday.comment.urls')),
     path("api/accounts/", include('my_holiday.accounts.api.urls')),
+    path("apidest/", include(router.urls)),
 
 ]
 
