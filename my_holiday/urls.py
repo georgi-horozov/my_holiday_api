@@ -1,9 +1,7 @@
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import path, include
-
-
+from django.urls import include, path
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -11,6 +9,7 @@ urlpatterns = [
     path('accounts/', include('my_holiday.accounts.urls')),
     path('destination/', include('my_holiday.destination.urls')),
     path('comment/', include('my_holiday.comment.urls')),
+    path("api/accounts/", include('my_holiday.accounts.api.urls')),
 
 ]
 

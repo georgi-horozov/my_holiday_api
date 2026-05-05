@@ -1,4 +1,4 @@
-import os
+# import os
 from pathlib import Path
 
 from django.urls import reverse_lazy
@@ -57,12 +57,8 @@ WSGI_APPLICATION = 'my_holiday.wsgi.application'
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": "my_holiday",
-        "USER": "postgres",
-        "PASSWORD": "Horozov_2023",
-        "HOST": "127.0.0.1",
-        "PORT": "5432",
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "db.sqlite3",
     }
 }
 
@@ -117,4 +113,14 @@ AUTH_USER_MODEL = "accounts.MyHolidayUser"
 LOGIN_REDIRECT_URL = reverse_lazy("index")
 LOGIN_URL = reverse_lazy("login user")
 LOGOUT_REDIRECT_URL = reverse_lazy("index")
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': ("rest_framework.permissions.IsAuthenticated",),
+}
 
