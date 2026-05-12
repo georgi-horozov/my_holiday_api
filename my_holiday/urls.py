@@ -4,10 +4,13 @@ from django.contrib import admin
 from django.urls import include, path
 from rest_framework.routers import DefaultRouter
 
+from my_holiday.comment.api.views import CommentViesSet
 from my_holiday.destination.api.views import DestinationViewSet
 
 router = DefaultRouter()
 router.register("destination", DestinationViewSet, basename="trucks")
+router.register("comments", CommentViesSet, basename="comments")
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
